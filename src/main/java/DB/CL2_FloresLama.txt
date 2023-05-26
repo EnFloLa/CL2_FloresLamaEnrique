@@ -1,0 +1,36 @@
+SET GLOBAL time_zone = '+8:00';
+-- borra la bd si existe
+DROP DATABASE IF EXISTS CL2_FloresLama;
+-- creamos la bd
+CREATE DATABASE CL2_FloresLama;
+-- activamos la bd
+USE CL2_FloresLama;
+
+CREATE TABLE IF NOT EXISTS Area(
+cod_area int NOT NULL AUTO_INCREMENT COMMENT 'Id de area',
+nombre_area varchar(100) NOT NULL COMMENT 'Nombres del area',
+ jefe_area varchar(10) NOT NULL COMMENT 'jefe del area',
+ PRIMARY KEY (`cod_area`)
+);
+
+CREATE TABLE IF NOT EXISTS Personal(
+personal_id int NOT NULL AUTO_INCREMENT COMMENT 'Id de personal',
+ personal_nombre varchar(100) NOT NULL COMMENT 'Nombres del personal',
+ personal_sueldo int NOT NULL COMMENT 'sueldo del personal',
+ cod_area int NOT NULL COMMENT 'codigo del area',
+ PRIMARY KEY (`personal_id`),
+ FOREIGN KEY (cod_area) REFERENCES Area(cod_area)
+);
+
+INSERT INTO Area VALUES (1, "Contabilidad", "Alex");
+INSERT INTO Area VALUES (2, "Recursos Humanos", "Nataly");
+INSERT INTO Area VALUES (3, "Sistemas", "Gerson");
+
+INSERT INTO Personal VALUES (1, "Marcelo Gallardo", "1025","1");
+INSERT INTO Personal VALUES (2, "Ximena Rios", "1025","1");
+INSERT INTO Personal VALUES (3, "Julio Escarza", "1025","1");
+INSERT INTO Personal VALUES (4, "Raul Jimenez", "1025","2");
+INSERT INTO Personal VALUES (5, "Fernanda Flores", "1025","2");
+INSERT INTO Personal VALUES (6, "Jose Mourinho", "1025","2");
+INSERT INTO Personal VALUES (7, "Raul Gonzales", "1025","3");
+INSERT INTO Personal VALUES (8, "Rafael Andrade", "1025","3");
